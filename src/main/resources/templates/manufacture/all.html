@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Current  time</title>
+</head>
+<body>
+<ul>
+    <li th:each="manufacture : ${manufactures}" th:text="${manufacture.name}">
+        <ul>
+         <li th:each="product : ${manufacture.products}" th:text="${product.name}"></li>
+        </ul>
+    </li>
+    <p>manufactures</p>
+</ul>
+</body>
+</html>
