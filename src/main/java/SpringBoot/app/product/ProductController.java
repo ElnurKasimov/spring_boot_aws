@@ -12,9 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProductController {
     private  final ProductService productService;
 
-    @GetMapping("/all-products")
+    @GetMapping("/all")
     public ModelAndView getSetOfProducts() {
-        ModelAndView result = new ModelAndView("all-products");
+        ModelAndView result = new ModelAndView("product/all");
         result.addObject("products", productService.getAllProducts());
         return  result;
     }

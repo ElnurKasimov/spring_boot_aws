@@ -1,16 +1,31 @@
 package SpringBoot.app.product;
 
+import SpringBoot.app.manufacture.Manufacture;
+import SpringBoot.app.manufacture.ManufactureService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
 
-    public Set<ProductController> getAllProducts() {
-        Set<ProductController> products = new HashSet<>();
+    public Set<Product> getAllProducts() {
+        return initializeTestProducts();
+    }
 
+    public Set<Product> initializeTestProducts() {
+        ManufactureService manufactureService = new ManufactureService();
+        Set<Product> products = new HashSet<>();
+        for (Manufacture manufacture : manufactureService.getAllManufactures()) {
+            for (Product product : manufacture.getProducts()) {
+                products.add(product);
+            }
+        }
         return products;
     }
+
+
 }

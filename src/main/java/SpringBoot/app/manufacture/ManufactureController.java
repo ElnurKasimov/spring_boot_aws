@@ -1,4 +1,4 @@
-package SpringBoot.app.producer;
+package SpringBoot.app.manufacture;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,10 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class ManufactureController {
     private  final ManufactureService manufactureService;
 
-    @GetMapping("/all-manufactures")
+    @GetMapping("/all")
     public ModelAndView getSetOfProducts() {
-        ModelAndView result = new ModelAndView("all-manufactures");
-        result.addObject("products", manufactureService.getAllManufactures());
+        ModelAndView result = new ModelAndView("manufacture/all");
+        result.addObject("manufactures", manufactureService.getAllManufactures());
         return  result;
     }
 
