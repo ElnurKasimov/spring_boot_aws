@@ -20,9 +20,7 @@ public class ProductService {
         ManufactureService manufactureService = new ManufactureService();
         Set<Product> products = new HashSet<>();
         for (Manufacture manufacture : manufactureService.getAllManufactures()) {
-            for (Product product : manufacture.getProducts()) {
-                products.add(product);
-            }
+            products.addAll(manufacture.getProducts());
         }
         return products;
     }
