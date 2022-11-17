@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manufacture</title>
+</head>
+     <body>
+     <p>Here's the list of subjects. Select any one:</p>
+     <form action="/product/add" method="POST">
+
+
+         <select th:field="*{manufacture}">
+             <option th:each="manufacture : ${manufactures}"
+                     th:value="${manufacture.name}"
+                     th:text="${manufacture.name}">Wireframe</option>
+         </select>
+
+         <button type="submit">Chose</button>
+     </form>
+
+     <h3 th:text="'Selected manufacture : ' + ${SelectedManufacture}"></h3>
+    </body>
+</html>

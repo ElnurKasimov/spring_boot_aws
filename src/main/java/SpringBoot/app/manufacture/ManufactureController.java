@@ -1,5 +1,6 @@
 package SpringBoot.app.manufacture;
 
+import SpringBoot.app.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/manufacture")
 public class ManufactureController {
     private  final ManufactureService manufactureService;
+    private  final ProductService productService;
 
     @GetMapping("/all")
     public ModelAndView getSetOfProducts() {
