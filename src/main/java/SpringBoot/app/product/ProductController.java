@@ -25,12 +25,21 @@ public class ProductController {
     public ModelAndView getAddProduct() {
         return  new ModelAndView("product/add");
     }
+
     @PostMapping("/add")
-    public ModelAndView postAddProduct(@ModelAttribute("manufacture") Manufacture manufacture) {
+    public ModelAndView postAddProduct(
+            @RequestParam ("name") String name,
+            @RequestParam ("price") long price,
+            @RequestParam ("manufacture") String manufactureName) {
         ModelAndView result = new ModelAndView("product/add");
         result.addObject("manufactures", manufactureService.getAllManufactures());
-        System.out.println("Selected manufacture : " + manufacture.getName());
-        result.addObject("SelectedManufacture", manufacture.getName());
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        product.setManufacture(manufactureService.getByName(manufactureName));
+        // add product to DB
+       System.out.println("Product : " + product);
+        result.addObject("SelectedManufacture", product.getManufacture().getName());
         return  result;
     }
 

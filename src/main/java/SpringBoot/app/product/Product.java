@@ -12,6 +12,8 @@ public class Product {
     long price;
     Manufacture manufacture;
 
+    public Product() {};
+
     public void setId(UUID id) {
         this.id = id;
     }
@@ -42,5 +44,15 @@ public class Product {
 
     public Manufacture getManufacture() {
         return manufacture;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", manufacture=" + manufacture +
+                '}';
     }
 }

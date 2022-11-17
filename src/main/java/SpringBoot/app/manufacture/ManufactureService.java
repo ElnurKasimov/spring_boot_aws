@@ -11,7 +11,13 @@ import java.util.UUID;
 public class ManufactureService {
 
     public Set<Manufacture> getAllManufactures() {
+        //get Manufactures from DB
         return initializeTestManufactures();
+    }
+
+    public Manufacture getByName(String manufactureName) {
+        // get from DB
+        return getAllManufactures().stream().filter(manufacture -> manufacture.getName().equals(manufactureName)).findFirst().orElse(null);
     }
 
     public Set<Manufacture> initializeTestManufactures() {

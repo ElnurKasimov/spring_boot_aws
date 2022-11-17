@@ -35,4 +35,5 @@ public class Manufacture {
     public Set<Product> getProducts() {
         return products;
     }
+
 }

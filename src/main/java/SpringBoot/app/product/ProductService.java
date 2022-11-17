@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     public Set<Product> getAllProducts() {
+        //  get products from DB
         return initializeTestProducts();
     }
 
