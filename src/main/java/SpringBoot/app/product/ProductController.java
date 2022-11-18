@@ -20,12 +20,12 @@ public class ProductController {
         result.addObject("products", productService.getAllProducts());
         return  result;
     }
-
     @GetMapping("/add")
     public ModelAndView getAddProduct() {
-        return  new ModelAndView("product/add");
+        ModelAndView result = new ModelAndView("product/add");
+        result.addObject("manufactures", manufactureService.getAllManufactures());
+        return  result;
     }
-
     @PostMapping("/add")
     public ModelAndView postAddProduct(
             @RequestParam ("name") String name,
@@ -42,6 +42,5 @@ public class ProductController {
         result.addObject("SelectedManufacture", product.getManufacture().getName());
         return  result;
     }
-
 
 }
