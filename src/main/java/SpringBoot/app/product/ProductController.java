@@ -1,10 +1,8 @@
 package SpringBoot.app.product;
 
-import SpringBoot.app.manufacture.Manufacture;
 import SpringBoot.app.manufacture.ManufactureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,13 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-    private  final ProductService productService;
+    private  final InMemoryProductService inMemoryProductService;
     private final ManufactureService manufactureService;
 
     @GetMapping("/all")
     public ModelAndView getSetOfProducts() {
         ModelAndView result = new ModelAndView("product/all");
-        result.addObject("products", productService.getAllProducts());
+        result.addObject("products", inMemoryProductService.listAll());
         return  result;
     }
     @GetMapping("/add")

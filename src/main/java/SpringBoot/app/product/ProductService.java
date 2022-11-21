@@ -1,30 +1,16 @@
 package SpringBoot.app.product;
 
-import SpringBoot.app.manufacture.Manufacture;
-import SpringBoot.app.manufacture.ManufactureService;
-import org.springframework.stereotype.Service;
+import SpringBoot.app.product.dto.ProductDto;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-@Service
-public class ProductService {
+public interface ProductService {
+    public Set<Product> listAll ();
 
-    public Set<Product> getAllProducts() {
-        //  get products from DB
-        return initializeTestProducts();
-    }
+    public ProductDto getById(UUID id);
 
-    public Set<Product> initializeTestProducts() {
-        ManufactureService manufactureService = new ManufactureService();
-        Set<Product> products = new HashSet<>();
-        for (Manufacture manufacture : manufactureService.getAllManufactures()) {
-            products.addAll(manufacture.getProducts());
-        }
-        return products;
-    }
+    public ProductDto save(ProductDto productDto);
 
-
+    public Product deleteById(UUID id);
 }
