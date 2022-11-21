@@ -4,6 +4,7 @@ import SpringBoot.app.manufacture.Manufacture;
 import SpringBoot.app.manufacture.ManufactureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,20 +28,17 @@ public class ProductController {
         return  result;
     }
     @PostMapping("/add")
-    public ModelAndView postAddProduct(
+    public String postAddProduct(
             @RequestParam ("name") String name,
             @RequestParam ("price") long price,
-            @RequestParam ("manufacture") String manufactureName) {
-        ModelAndView result = new ModelAndView("product/add");
-        result.addObject("manufactures", manufactureService.getAllManufactures());
+            @RequestParam ("manufactureName") String manufactureName) {
         Product product = new Product();
         product.setName(name);
         product.setPrice(price);
         product.setManufacture(manufactureService.getByName(manufactureName));
+        System.out.println(product);
         // add product to DB
-       System.out.println("Product : " + product);
-        result.addObject("SelectedManufacture", product.getManufacture().getName());
-        return  result;
+        return "redirect:/product/all";
     }
 
 }
