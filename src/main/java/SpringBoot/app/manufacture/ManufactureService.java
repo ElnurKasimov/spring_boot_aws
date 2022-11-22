@@ -13,6 +13,8 @@ public interface ManufactureService {
 
     public ManufactureDto getById(UUID id);
 
+    public ManufactureDto getByName(String name);
+
     public Manufacture save(ManufactureDto manufactureDto);
 
     public Manufacture deleteById(UUID id);

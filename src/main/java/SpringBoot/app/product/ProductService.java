@@ -9,6 +9,7 @@ public interface ProductService {
     public Set<ProductDto> listAll ();
 
     public ProductDto getById(UUID id);
+    public ProductDto getByName(String name);
 
     public Product save(ProductDto productDto);
 

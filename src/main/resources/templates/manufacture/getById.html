@@ -4,7 +4,7 @@
       lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manufacture</title>
+    <title>Manufacture ID</title>
     <style>
         table {
           font-family: arial, sans-serif;
@@ -22,26 +22,28 @@
         </style>
 </head>
      <body>
-         <form action="/product/id" method="POST">
-             <label for="id">ID in format UUID:</label>
+         <form action="/manufacture/id" method="POST">
+             <label for="id">ID in UUID format</label>
              <input type="text" id="id" name="id">
-             <button type="submit">Select</button>
+             <button type="submit">Find</button>
          </form>
-         <table th:if="${product}">
+         <table th:if="${manufacture}">
              <thead>
              <tr>
-                 <td><b>Product id</b></td>
+                 <td><b>Manufacture id</b></td>
                  <td><b>Name</b></td>
-                 <td><b>Price</b></td>
-                 <td><b>Manufacture</b></td>
+                 <td><b>Products</b></td>
              </tr>
              </thead>
              <tbody>
              <tr>
-                 <td  th:text="${product.id}" ></td>
-                 <td  th:text="${product.name}" ></td>
-                 <td  th:text="${product.price}" ></td>
-                 <td  th:text="${product.manufacture.name}" ></td>
+                 <td  th:text="${manufacture.id}" ></td>
+                 <td  th:text="${manufacture.name}" ></td>
+                 <td>
+                     <ul>
+                         <li th:each="product : ${manufacture.products}" th:text="${product.name}"></li>
+                     </ul>
+                 </td>
              </tr>
              </tbody>
          </table>

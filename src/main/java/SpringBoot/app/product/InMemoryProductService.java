@@ -35,6 +35,14 @@ public class InMemoryProductService implements ProductService {
     }
 
     @Override
+    public ProductDto getByName(String name) {
+        return products.values()
+                .stream()
+                .filter(productDto -> productDto.getName().equals(name))
+                .findFirst().orElse(null);
+    }
+
+    @Override
     public synchronized Product save(ProductDto productDto) {
 
         if (productDto.getId() == null) {

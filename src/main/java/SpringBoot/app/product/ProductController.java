@@ -25,15 +25,32 @@ public class ProductController {
 
     @GetMapping("/id")
     public String getProductById() {
-        return "/product/id";
+        return "/product/getById";
     }
 
     @PostMapping("/id")
     public ModelAndView getProductById(@RequestParam(name = "id") String id) {
-        ModelAndView result = new ModelAndView("product/id");
+        ModelAndView result = new ModelAndView("product/getById");
         result.addObject("product", inMemoryProductService.getById(UUID.fromString(id)));
         return result;
     }
+
+    @GetMapping("/name")
+    public String getProductByName() {
+        return "/product/getByName";
+    }
+
+    @PostMapping("/name")
+    public ModelAndView getProductByName(@RequestParam(name = "name") String name) {
+        ModelAndView result = new ModelAndView("product/getByName");
+        result.addObject("product", inMemoryProductService.getByName(name));
+        return result;
+    }
+
+
+
+
+
 //    @GetMapping("/add")
 //    public ModelAndView getAddProduct() {
 //        ModelAndView result = new ModelAndView("product/add");

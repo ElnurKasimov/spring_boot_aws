@@ -17,6 +17,19 @@ public class InMemoryManufactureService implements ManufactureService {
         return new HashSet<>(manufactures.values());
     }
 
+    @Override
+    public ManufactureDto getById(UUID id) {
+          return manufactures.get(id);
+    }
+
+    @Override
+    public ManufactureDto getByName(String name) {
+        return manufactures.values()
+                .stream()
+                .filter(manufactureDto -> manufactureDto.getName().equals(name))
+                .findFirst().orElse(null);
+    }
+
 //    public ManufactureDto getByName(String manufactureName) {
 //        // get from DB
 //        return getAllManufactures().stream().filter(manufacture -> manufacture.getName().equals(manufactureName)).findFirst().orElse(null);
@@ -76,10 +89,7 @@ public class InMemoryManufactureService implements ManufactureService {
 
 
 
-    @Override
-    public ManufactureDto getById(UUID id) {
-        return null;
-    }
+
 
     @Override
     public Manufacture save(ManufactureDto manufactureDto) {
