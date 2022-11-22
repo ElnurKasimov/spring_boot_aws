@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/manufacture")
 public class ManufactureController {
-    private  final ManufactureService manufactureService;
+    private  final InMemoryManufactureService manufactureService;
     private  final InMemoryProductService inMemoryProductService;
 
     @GetMapping("/all")

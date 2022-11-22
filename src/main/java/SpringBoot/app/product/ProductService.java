@@ -6,11 +6,11 @@ import java.util.Set;
 import java.util.UUID;
 
 public interface ProductService {
-    public Set<Product> listAll ();
+    public Set<ProductDto> listAll ();
 
     public ProductDto getById(UUID id);
 
-    public ProductDto save(ProductDto productDto);
+    public Product save(ProductDto productDto);
 
     public Product deleteById(UUID id);
 }

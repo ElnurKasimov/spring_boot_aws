@@ -15,6 +15,13 @@ public class ProductDto {
 
     public ProductDto() {};
 
+    public ProductDto(String name, long price, Manufacture manufacture) {
+        this.name = name;
+        this.price = price;
+        this.manufacture = manufacture;
+    }
+
+
     public void setId(UUID id) {
         this.id = id;
     }
@@ -57,7 +64,7 @@ public class ProductDto {
                 '}';
     }
 
-    public ProductDto fromProduct(Product product) {
+    public static ProductDto fromProduct(Product product) {
         ProductDto result = new ProductDto();
         result.setId(product.getId());
         result.setName(product.getName());
