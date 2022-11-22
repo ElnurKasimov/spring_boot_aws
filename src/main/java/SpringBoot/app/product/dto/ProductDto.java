@@ -1,5 +1,6 @@
 package SpringBoot.app.product.dto;
 
+import SpringBoot.app.manufacture.Dto.ManufactureDto;
 import SpringBoot.app.manufacture.Manufacture;
 import SpringBoot.app.product.Product;
 import lombok.AllArgsConstructor;
@@ -11,11 +12,11 @@ public class ProductDto {
     private UUID id;
     private  String name;
     long price;
-    Manufacture manufacture;
+    ManufactureDto manufacture;
 
     public ProductDto() {};
 
-    public ProductDto(String name, long price, Manufacture manufacture) {
+    public ProductDto(String name, long price, ManufactureDto manufacture) {
         this.name = name;
         this.price = price;
         this.manufacture = manufacture;
@@ -34,7 +35,7 @@ public class ProductDto {
         this.price = price;
     }
 
-    public void setManufacture(Manufacture manufacture) {
+    public void setManufacture(ManufactureDto manufacture) {
         this.manufacture = manufacture;
     }
 
@@ -50,7 +51,7 @@ public class ProductDto {
         return price;
     }
 
-    public Manufacture getManufacture() {
+    public ManufactureDto getManufacture() {
         return manufacture;
     }
 
@@ -69,7 +70,7 @@ public class ProductDto {
         result.setId(product.getId());
         result.setName(product.getName());
         result.setPrice(product.getPrice());
-        result.setManufacture(product.getManufacture());
+        result.setManufacture(ManufactureDto.fromManufacture(product.getManufacture()));
         return result;
     }
 
@@ -78,7 +79,7 @@ public class ProductDto {
         result.setId(id);
         result.setName(name);
         result.setPrice(price);
-        result.setManufacture(manufacture);
+        result.setManufacture(manufacture.toManufacture());
         return result;
     }
 }

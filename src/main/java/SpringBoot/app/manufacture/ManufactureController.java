@@ -17,7 +17,7 @@ public class ManufactureController {
     @GetMapping("/all")
     public ModelAndView getSetOfProducts() {
         ModelAndView result = new ModelAndView("manufacture/all");
-        result.addObject("manufactures", manufactureService.getAllManufactures());
+        result.addObject("manufactures", manufactureService.listAll());
         return  result;
     }
 

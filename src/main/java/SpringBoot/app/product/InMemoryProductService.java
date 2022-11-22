@@ -1,5 +1,6 @@
 package SpringBoot.app.product;
 
+import SpringBoot.app.manufacture.Dto.ManufactureDto;
 import SpringBoot.app.manufacture.Manufacture;
 import SpringBoot.app.manufacture.InMemoryManufactureService;
 import SpringBoot.app.product.dto.ProductDto;
@@ -15,9 +16,9 @@ public class InMemoryProductService implements ProductService {
     public synchronized Map<UUID, ProductDto> initializeTestProducts() {
         InMemoryManufactureService manufactureService = new InMemoryManufactureService();
         Map<UUID, ProductDto> products = new HashMap<>();
-        for (Manufacture manufacture : manufactureService.getAllManufactures()) {
+        for (ManufactureDto manufacture : manufactureService.listAll()) {
             manufacture.getProducts()
-                    .forEach(product -> {products.put(product.getId(), ProductDto.fromProduct(product));});
+                    .forEach(product -> {products.put(product.getId(), product);});
         }
         return products;
     }
