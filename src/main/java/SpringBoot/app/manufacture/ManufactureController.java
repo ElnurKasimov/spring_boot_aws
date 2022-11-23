@@ -34,6 +34,7 @@ public class ManufactureController {
     public ModelAndView getManufactureById(@RequestParam(name = "id") String id) {
         ModelAndView result = new ModelAndView("manufacture/getById");
         result.addObject("manufacture", inMemoryManufactureService.getById(UUID.fromString(id)));
+        result.addObject("manufactureProducts", inMemoryProductService.getManufactureProductsById(UUID.fromString(id)));
         return result;
     }
 
@@ -45,7 +46,8 @@ public class ManufactureController {
     @PostMapping("/name")
     public ModelAndView getManufactureByName(@RequestParam(name = "name") String name) {
         ModelAndView result = new ModelAndView("manufacture/getByName");
-        result.addObject("manufacture", inMemoryProductService.getByName(name));
+        result.addObject("manufacture", inMemoryManufactureService.getByName(name));
+        result.addObject("manufactureProducts", inMemoryProductService.getManufactureProductsByName(name));
         return result;
     }
 

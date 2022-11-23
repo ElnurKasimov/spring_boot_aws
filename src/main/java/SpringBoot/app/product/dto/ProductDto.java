@@ -65,21 +65,4 @@ public class ProductDto {
                 '}';
     }
 
-    public static ProductDto fromProduct(Product product) {
-        ProductDto result = new ProductDto();
-        result.setId(product.getId());
-        result.setName(product.getName());
-        result.setPrice(product.getPrice());
-        result.setManufacture(ManufactureDto.fromManufacture(product.getManufacture()));
-        return result;
-    }
-
-    public Product toProduct() {
-        Product result = new Product();
-        result.setId(id);
-        result.setName(name);
-        result.setPrice(price);
-        result.setManufacture(manufacture.toManufacture());
-        return result;
-    }
 }

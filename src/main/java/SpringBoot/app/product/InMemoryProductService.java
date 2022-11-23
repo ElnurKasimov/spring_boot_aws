@@ -1,43 +1,45 @@
 package SpringBoot.app.product;
 
-import SpringBoot.app.manufacture.Dto.ManufactureDto;
-import SpringBoot.app.manufacture.Manufacture;
-import SpringBoot.app.manufacture.InMemoryManufactureService;
+import SpringBoot.app.product.dto.ProductConverter;
 import SpringBoot.app.product.dto.ProductDto;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class InMemoryProductService implements ProductService {
-    private Map<UUID, ProductDto> products = initializeTestProducts();
+    @Getter
+    private Map<UUID, Product> products = new HashMap<>();
 
 
-    public synchronized Map<UUID, ProductDto> initializeTestProducts() {
-        InMemoryManufactureService manufactureService = new InMemoryManufactureService();
-        Map<UUID, ProductDto> products = new HashMap<>();
-        for (ManufactureDto manufacture : manufactureService.listAll()) {
-            manufacture.getProducts()
-                    .forEach(product -> {products.put(product.getId(), product);});
-        }
-        return products;
-    }
+//    public synchronized Map<UUID, Product> initializeTestProducts() {
+//        InMemoryManufactureService manufactureService = new InMemoryManufactureService();
+//        Map<UUID, Product> products = new HashMap<>();
+//        for (ManufactureDto manufacture : manufactureService.listAll()) {
+//            manufacture.getProducts()
+//                    .forEach(product -> {products.put(product.getId(), ProductConverter.to(product));});
+//        }
+//        return products;
+//    }
 
 
     @Override
     public Set<ProductDto> listAll() {
-        return new HashSet<>(products.values());
+        return products.values().stream().map(ProductConverter::from).collect(Collectors.toSet());
     }
 
     @Override
     public ProductDto getById(UUID id) {
-        return products.get(id);
+        return ProductConverter.from(products.get(id));
     }
 
     @Override
     public ProductDto getByName(String name) {
         return products.values()
                 .stream()
+                .map(ProductConverter::from)
                 .filter(productDto -> productDto.getName().equals(name))
                 .findFirst().orElse(null);
     }
@@ -49,9 +51,9 @@ public class InMemoryProductService implements ProductService {
             productDto.setId(UUID.randomUUID());
         }
 
-        products.put(productDto.getId(), productDto);
+        products.put(productDto.getId(), ProductConverter.to(productDto));
 
-        return productDto.toProduct();
+        return ProductConverter.to(productDto);
 
     }
 
@@ -59,4 +61,22 @@ public class InMemoryProductService implements ProductService {
     public synchronized Product deleteById(UUID id) {
         return null;
     }
+
+    public Set<ProductDto> getManufactureProductsByName(String name) {
+        return products.values()
+                .stream()
+                .map(ProductConverter::from)
+                .filter(pr -> pr.getManufacture().getName().equals(name))
+                .collect(Collectors.toSet());
+    }
+
+    public Set<ProductDto> getManufactureProductsById(UUID id) {
+        return products.values()
+                .stream()
+                .map(ProductConverter::from)
+                .filter(pr -> (pr.getManufacture().getId().equals(id)))
+                .collect(Collectors.toSet());
+    }
+
+
 }

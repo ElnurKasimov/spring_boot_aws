@@ -27,18 +27,12 @@
                     <tr>
                         <td><b>Manufacture id</b></td>
                         <td><b>Name</b></td>
-                        <td><b>Products</b></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr  th:each="manufacture : ${manufactures}">
                         <td  th:text="${manufacture.id}" ></td>
                         <td  th:text="${manufacture.name}" ></td>
-                        <td>
-                            <ul>
-                                <li th:each="product : ${manufacture.products}" th:text="${product.name}"></li>
-                            </ul>
-                        </td>
                     </tr>
                 </tbody>
             </table>
