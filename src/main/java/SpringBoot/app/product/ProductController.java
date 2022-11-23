@@ -47,25 +47,20 @@ public class ProductController {
         return result;
     }
 
-
-
-
-
-//    @GetMapping("/add")
-//    public ModelAndView getAddProduct() {
-//        ModelAndView result = new ModelAndView("product/add");
-//        result.addObject("manufactures", manufactureService.getAllManufactures());
-//        return  result;
-//    }
-//    @PostMapping("/add")
-//    public String postAddProduct(
-//            @RequestParam ("name") String name,
-//            @RequestParam ("price") long price,
-//            @RequestParam ("manufactureName") String manufactureName) {
-//        ProductDto productDto = new ProductDto(name, price, manufactureService.getByName(manufactureName));
-//        inMemoryProductService.save(productDto);
-//        // add product to DB
-//        return "redirect:/product/all";
-//    }
+    @GetMapping("/add")
+    public ModelAndView getAddProduct() {
+        ModelAndView result = new ModelAndView("product/add");
+        result.addObject("manufactures", manufactureService.listAll());
+        return  result;
+    }
+    @PostMapping("/add")
+    public String postAddProduct(
+            @RequestParam ("name") String name,
+            @RequestParam ("price") long price,
+            @RequestParam ("manufactureName") String manufactureName) {
+        ProductDto productDto = new ProductDto(name, price, manufactureService.getByName(manufactureName));
+        inMemoryProductService.save(productDto);
+        return "redirect:/product/all";
+    }
 
 }
