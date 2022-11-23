@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 public class ManufactureDto {
     private UUID id;
     private  String name;
-    //Set<ProductDto> products;
 
     public ManufactureDto() {};
 
@@ -35,10 +34,6 @@ public class ManufactureDto {
         this.name = name;
     }
 
-//    public void setProducts(Set<ProductDto> products) {
-//        this.products = products;
-//    }
-
     public UUID getId() {
         return id;
     }
@@ -46,10 +41,5 @@ public class ManufactureDto {
     public String getName() {
         return name;
     }
-
-//    public Set<ProductDto> getProducts() {
-//        return products;
-//    }
-
 
 }
