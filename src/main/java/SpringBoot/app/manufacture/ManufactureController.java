@@ -1,6 +1,8 @@
 package SpringBoot.app.manufacture;
 
+import SpringBoot.app.manufacture.Dto.ManufactureDto;
 import SpringBoot.app.product.InMemoryProductService;
+import SpringBoot.app.product.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,29 +53,19 @@ public class ManufactureController {
         return result;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/create")
-    public ModelAndView postCreateManufacture() {
-        ModelAndView result = new ModelAndView("create");
-        //result.addObject("products", manufactureService.createManufacture());
-        return  result;
+    @GetMapping("/add")
+    public String getAddManufacture() {
+        ModelAndView result = new ModelAndView("manufacture/add");
+        return "/manufacture/add";
     }
+    @PostMapping("/add")
+    public String postAddManufacture(
+            @RequestParam ("name") String name) {
+        ManufactureDto manufactureDto = new ManufactureDto(name);
+        inMemoryManufactureService.save(manufactureDto);
+        return "redirect:/manufacture/all";
+    }
+
 
     @GetMapping("/update")
     public ModelAndView postUpdateManufacture() {

@@ -18,11 +18,9 @@ public class ManufactureDto {
 
     public ManufactureDto() {};
 
-//    public ManufactureDto(String name, Set<ProductDto> products) {
-//        this.name = name;
-//        this.products = products;
-//
-//    }
+    public ManufactureDto(String name) {
+        this.name = name;
+    }
 
     public void setId(UUID id) {
         this.id = id;
