@@ -46,7 +46,8 @@ public class InMemoryManufactureService implements ManufactureService {
     }
 
     @Override
-    public Manufacture deleteById(UUID id) {
+    public ManufactureDto deleteById(UUID id) {
+
         return null;
     }
 }

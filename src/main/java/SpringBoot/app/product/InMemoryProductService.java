@@ -13,18 +13,6 @@ public class InMemoryProductService implements ProductService {
     @Getter
     private Map<UUID, Product> products = new HashMap<>();
 
-
-//    public synchronized Map<UUID, Product> initializeTestProducts() {
-//        InMemoryManufactureService manufactureService = new InMemoryManufactureService();
-//        Map<UUID, Product> products = new HashMap<>();
-//        for (ManufactureDto manufacture : manufactureService.listAll()) {
-//            manufacture.getProducts()
-//                    .forEach(product -> {products.put(product.getId(), ProductConverter.to(product));});
-//        }
-//        return products;
-//    }
-
-
     @Override
     public Set<ProductDto> listAll() {
         return products.values().stream().map(ProductConverter::from).collect(Collectors.toSet());
@@ -57,10 +45,7 @@ public class InMemoryProductService implements ProductService {
 
     }
 
-    @Override
-    public synchronized Product deleteById(UUID id) {
-        return null;
-    }
+
 
     public Set<ProductDto> getManufactureProductsByName(String name) {
         return products.values()
@@ -78,5 +63,9 @@ public class InMemoryProductService implements ProductService {
                 .collect(Collectors.toSet());
     }
 
+    @Override
+    public synchronized ProductDto deleteById(UUID id) {
+        return ProductConverter.from(products.remove(id));
+    }
 
 }

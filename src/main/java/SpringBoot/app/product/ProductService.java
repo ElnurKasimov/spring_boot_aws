@@ -13,5 +13,5 @@ public interface ProductService {
 
     public Product save(ProductDto productDto);
 
-    public Product deleteById(UUID id);
+    public ProductDto deleteById(UUID id);
 }

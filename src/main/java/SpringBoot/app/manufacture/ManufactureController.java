@@ -2,6 +2,7 @@ package SpringBoot.app.manufacture;
 
 import SpringBoot.app.manufacture.Dto.ManufactureDto;
 import SpringBoot.app.product.InMemoryProductService;
+import SpringBoot.app.product.ProductService;
 import SpringBoot.app.product.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,13 +18,13 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/manufacture")
 public class ManufactureController {
-    private  final InMemoryManufactureService inMemoryManufactureService;
-    private  final InMemoryProductService inMemoryProductService;
+    private final ManufactureService manufactureService;
+    private final InMemoryProductService inMemoryProductService;
 
     @GetMapping("/all")
     public ModelAndView getSetOfProducts() {
         ModelAndView result = new ModelAndView("manufacture/all");
-        result.addObject("manufactures", inMemoryManufactureService.listAll());
+        result.addObject("manufactures", manufactureService.listAll());
         return  result;
     }
 
@@ -35,7 +36,7 @@ public class ManufactureController {
     @PostMapping("/id")
     public ModelAndView getManufactureById(@RequestParam(name = "id") String id) {
         ModelAndView result = new ModelAndView("manufacture/getById");
-        result.addObject("manufacture", inMemoryManufactureService.getById(UUID.fromString(id)));
+        result.addObject("manufacture", manufactureService.getById(UUID.fromString(id)));
         result.addObject("manufactureProducts", inMemoryProductService.getManufactureProductsById(UUID.fromString(id)));
         return result;
     }
@@ -48,7 +49,7 @@ public class ManufactureController {
     @PostMapping("/name")
     public ModelAndView getManufactureByName(@RequestParam(name = "name") String name) {
         ModelAndView result = new ModelAndView("manufacture/getByName");
-        result.addObject("manufacture", inMemoryManufactureService.getByName(name));
+        result.addObject("manufacture", manufactureService.getByName(name));
         result.addObject("manufactureProducts", inMemoryProductService.getManufactureProductsByName(name));
         return result;
     }
@@ -62,22 +63,23 @@ public class ManufactureController {
     public String postAddManufacture(
             @RequestParam ("name") String name) {
         ManufactureDto manufactureDto = new ManufactureDto(name);
-        inMemoryManufactureService.save(manufactureDto);
+        manufactureService.save(manufactureDto);
         return "redirect:/manufacture/all";
     }
 
-
-    @GetMapping("/update")
-    public ModelAndView postUpdateManufacture() {
-        ModelAndView result = new ModelAndView("update");
-        //result.addObject("products", manufactureService.updateManufacture());
-        return  result;
+    @GetMapping("/error")
+    public String getErrorPage () {
+        return "redirect:/error";
     }
     @GetMapping("/delete")
-    public ModelAndView postDeleteManufacture() {
-        ModelAndView result = new ModelAndView("delete");
-        //result.addObject("products", manufactureService.deleteManufacture());
-        return  result;
+    public String getDeleteManufacture() {
+        return "redirect:/manufacture/delete";
+    }
+    @PostMapping("/delete")
+    public String postDeleteById(
+            @RequestParam ("id") String id) {
+        manufactureService.deleteById(UUID.fromString(id));
+        return "redirect:/manufacture/all";
     }
 
 }

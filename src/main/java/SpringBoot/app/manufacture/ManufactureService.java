@@ -17,5 +17,5 @@ public interface ManufactureService {
 
     public Manufacture save(ManufactureDto manufactureDto);
 
-    public Manufacture deleteById(UUID id);
+    public ManufactureDto deleteById(UUID id);
 }
