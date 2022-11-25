@@ -60,8 +60,7 @@ public class ManufactureController {
         return "/manufacture/add";
     }
     @PostMapping("/add")
-    public String postAddManufacture(
-            @RequestParam ("name") String name) {
+    public String postAddManufacture(@RequestParam ("name") String name) {
         ManufactureDto manufactureDto = new ManufactureDto(name);
         manufactureService.save(manufactureDto);
         return "redirect:/manufacture/all";
@@ -73,13 +72,15 @@ public class ManufactureController {
     }
     @GetMapping("/delete")
     public String getDeleteManufacture() {
-        return "redirect:/manufacture/delete";
+        return "/manufacture/delete";
     }
     @PostMapping("/delete")
-    public String postDeleteById(
-            @RequestParam ("id") String id) {
-        manufactureService.deleteById(UUID.fromString(id));
-        return "redirect:/manufacture/all";
+    public String postDeleteById(@RequestParam ("id") String id) {
+        if(manufactureService.getById(UUID.fromString(id)) != null) {
+            inMemoryProductService.deleteManufactureProducts(UUID.fromString(id));
+            manufactureService.deleteById(UUID.fromString(id));
+            return "redirect:/manufacture/all";}
+        else {return "redirect:/error";}
     }
 
 }

@@ -47,7 +47,6 @@ public class InMemoryManufactureService implements ManufactureService {
 
     @Override
     public ManufactureDto deleteById(UUID id) {
-
-        return null;
+        return ManufactureConverter.from(manufactures.remove(id));
     }
 }

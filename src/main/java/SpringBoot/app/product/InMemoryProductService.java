@@ -68,4 +68,13 @@ public class InMemoryProductService implements ProductService {
         return ProductConverter.from(products.remove(id));
     }
 
+    public synchronized void deleteManufactureProducts(UUID id) {
+        products.values().forEach(pr -> {
+            if (pr.getManufacture().getId().equals(id))
+                    {
+                        products.remove(pr.getId());
+                    }
+        });
+    }
+
 }

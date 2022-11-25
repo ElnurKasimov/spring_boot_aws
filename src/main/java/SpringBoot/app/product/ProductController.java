@@ -82,9 +82,17 @@ public class ProductController {
         else {return "redirect:/error";}
     }
 
-    @GetMapping("/error")
-    public String getErrorPage () {
-        return "redirect:/error";
+    @GetMapping("/delete")
+    public String getDeleteProduct() {return "/product/delete";
     }
+    @PostMapping("/delete")
+    public String postDeleteById(@RequestParam ("id") String id) {
+        if(productService.getById(UUID.fromString(id)) != null) {
+            productService.deleteById(UUID.fromString(id));
+            return "redirect:/product/all";}
+        else {return "redirect:/error";}
+    }
+    @GetMapping("/error")
+    public String getErrorPage () {return "redirect:/error";}
 
 }
