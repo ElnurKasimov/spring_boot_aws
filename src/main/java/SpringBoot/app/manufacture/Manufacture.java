@@ -12,7 +12,7 @@ public class Manufacture {
     private  String name;
     Set<Product> products;
 
-    public Manufacture() {};
+    public Manufacture() {}
 
     public void setId(UUID id) {
         this.id = id;
