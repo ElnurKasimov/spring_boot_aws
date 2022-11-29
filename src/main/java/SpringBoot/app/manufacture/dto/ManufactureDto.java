@@ -1,14 +1,8 @@
-package SpringBoot.app.manufacture.Dto;
+package SpringBoot.app.manufacture.dto;
 
-import SpringBoot.app.manufacture.Manufacture;
-import SpringBoot.app.product.Product;
-import SpringBoot.app.product.dto.ProductConverter;
-import SpringBoot.app.product.dto.ProductDto;
 import lombok.AllArgsConstructor;
 
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class ManufactureDto {

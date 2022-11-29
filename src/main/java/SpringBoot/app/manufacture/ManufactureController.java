@@ -1,9 +1,7 @@
 package SpringBoot.app.manufacture;
 
-import SpringBoot.app.manufacture.Dto.ManufactureDto;
+import SpringBoot.app.manufacture.dto.ManufactureDto;
 import SpringBoot.app.product.InMemoryProductService;
-import SpringBoot.app.product.ProductService;
-import SpringBoot.app.product.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

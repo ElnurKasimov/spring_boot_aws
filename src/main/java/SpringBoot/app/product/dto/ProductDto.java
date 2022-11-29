@@ -1,8 +1,6 @@
 package SpringBoot.app.product.dto;
 
-import SpringBoot.app.manufacture.Dto.ManufactureDto;
-import SpringBoot.app.manufacture.Manufacture;
-import SpringBoot.app.product.Product;
+import SpringBoot.app.manufacture.dto.ManufactureDto;
 import lombok.AllArgsConstructor;
 
 import java.util.UUID;

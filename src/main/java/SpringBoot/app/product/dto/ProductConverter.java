@@ -1,13 +1,7 @@
 package SpringBoot.app.product.dto;
 
-import SpringBoot.app.manufacture.Dto.ManufactureConverter;
-import SpringBoot.app.manufacture.Dto.ManufactureDto;
+import SpringBoot.app.manufacture.dto.ManufactureConverter;
 import SpringBoot.app.product.Product;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 
 public class ProductConverter {

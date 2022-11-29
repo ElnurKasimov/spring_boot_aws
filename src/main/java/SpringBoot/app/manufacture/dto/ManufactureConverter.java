@@ -1,4 +1,4 @@
-package SpringBoot.app.manufacture.Dto;
+package SpringBoot.app.manufacture.dto;
 
 import SpringBoot.app.manufacture.Manufacture;
 

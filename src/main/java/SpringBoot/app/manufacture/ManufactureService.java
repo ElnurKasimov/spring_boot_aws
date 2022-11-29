@@ -1,10 +1,7 @@
 package SpringBoot.app.manufacture;
 
-import SpringBoot.app.manufacture.Dto.ManufactureDto;
-import SpringBoot.app.product.Product;
-import SpringBoot.app.product.dto.ProductDto;
+import SpringBoot.app.manufacture.dto.ManufactureDto;
 
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 

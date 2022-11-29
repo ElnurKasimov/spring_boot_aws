@@ -1,10 +1,7 @@
 package SpringBoot.app.manufacture;
 
-import SpringBoot.app.manufacture.Dto.ManufactureConverter;
-import SpringBoot.app.manufacture.Dto.ManufactureDto;
-import SpringBoot.app.product.Product;
-import SpringBoot.app.product.dto.ProductConverter;
-import SpringBoot.app.product.dto.ProductDto;
+import SpringBoot.app.manufacture.dto.ManufactureConverter;
+import SpringBoot.app.manufacture.dto.ManufactureDto;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 

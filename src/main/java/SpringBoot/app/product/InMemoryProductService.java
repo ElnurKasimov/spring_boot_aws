@@ -46,7 +46,6 @@ public class InMemoryProductService implements ProductService {
     }
 
 
-
     public Set<ProductDto> getManufactureProductsByName(String name) {
         return products.values()
                 .stream()
@@ -69,18 +68,6 @@ public class InMemoryProductService implements ProductService {
     }
 
     public synchronized void deleteManufactureProducts(UUID id) {
-//        for( Product product : products.values()) {
-//            if(product.getManufacture().getId().equals(id)) {
-//                System.out.println(product);
-//                products.remove(product.getId());
-//            }
-//        }
-        //        products.values().forEach(pr -> {
-        //            if (pr.getManufacture().getId().equals(id))
-        //                    {
-        //                        products.remove(pr.getId());
-        //                    }
-        //        });
         products.entrySet().removeIf(entry -> entry.getValue().getManufacture().getId().equals(id));
     }
 
