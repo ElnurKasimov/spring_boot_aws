@@ -70,10 +70,12 @@ public class ManufactureController {
     public String getErrorPage () {
         return "redirect:/error";
     }
+
     @GetMapping("/delete")
     public String getDeleteManufacture() {
         return "/manufacture/delete";
     }
+
     @PostMapping("/delete")
     public String postDeleteById(@RequestParam ("id") String id) {
         if(manufactureService.getById(UUID.fromString(id)) != null) {
