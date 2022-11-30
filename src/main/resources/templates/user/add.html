@@ -4,23 +4,31 @@
       lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product add</title>
+    <title>User add</title>
 </head>
      <body>
-         <form action="/product/add" method="POST">
+         <form action="/user/add" method="POST">
              <label for="lastName">Last Name:</label>
              <input type="text" id="lastName" name="lastName"><br>
              <label for="firstName">First Name:</label>
-             <input type="text" id="firstName" name="FirstName"><br>
+             <input type="text" id="firstName" name="firstName"><br>
              <label for="email">E-mail:</label>
              <input type="text" id="email" name="email"><br>
 
-             <label for="price">Price:</label>
-             <input type="number" id="price" name="price"><br>
-             <label for = "manufactures">Select manufacture</label>
-             <select id="manufactures" name="manufactureName">
-                 <option th:each="manufacture : ${manufactures}" th:value="${manufacture.name}" th:text="${manufacture.name}"></option>
-             </select>
+
+             <input type="checkbox" id="user" name="roles[]" value="user">
+             <label for="user">User </label>
+             <br>
+
+
+             <input type="checkbox" id="admin" name="roles[]" value="admin">
+             <label for="admin">Admin </label>
+             <br>
+
+             <input type="checkbox" id="boss" name="roles[]" value="boss">
+             <label for="boss">Boss </label>
+             <br>
+
              <button type="submit">Add</button>
          </form>
      </body>

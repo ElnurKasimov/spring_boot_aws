@@ -41,7 +41,12 @@ public class InMemoryRoleService implements RoleService{
     @Override
     public Set<Role> getRolesFromNames(String[] rolesNames) {
         Set<Role> roles = new HashSet<>();
-        Arrays.stream(rolesNames).forEach(role -> roles.add(getByName(role)));
+        for(String name : rolesNames ) {
+            Role role = getByName(name);
+            roles.add(role);
+        }
+        System.out.println(roles);
+        //Arrays.stream(rolesNames).forEach(role -> roles.putadd(getByName(role)));
         return roles;
     }
 

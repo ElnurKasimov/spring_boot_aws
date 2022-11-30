@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("/all")
     public ModelAndView getSetOfUsers() {
         ModelAndView result = new ModelAndView("user/all");
-        result.addObject("manufactures", userService.listAll());
+        result.addObject("users", userService.listAll());
         return  result;
     }
 
@@ -59,7 +59,7 @@ public class UserController {
     @GetMapping("/add")
     public ModelAndView getAddProduct() {
         ModelAndView result = new ModelAndView("user/add");
-        result.addObject("roles", roleService.listAll());
+        //result.addObject("roles", roleService.listAll());
         return  result;
     }
     @PostMapping("/add")
@@ -68,8 +68,6 @@ public class UserController {
             @RequestParam(name = "firstName") String firstName,
             @RequestParam(name = "email") String email,
             @RequestParam(value = "roles[]") String[] roles )  {
-//        <input type="checkbox" name="roles[]" value="user" />
-//        <input type="checkbox" name="roles[]" value="admin" />
 
         UserDto userDto = new UserDto(lastName, firstName, email, roleService.getRolesFromNames(roles));
         userService.save(userDto);
