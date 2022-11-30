@@ -1,7 +1,11 @@
 package SpringBoot.app.role;
 
+import SpringBoot.app.product.dto.ProductConverter;
+import org.springframework.stereotype.Service;
+
 import java.util.*;
 
+@Service
 public class InMemoryRoleService implements RoleService{
     private Map<UUID, Role> roles = new HashMap<>();
 
@@ -21,7 +25,7 @@ public class InMemoryRoleService implements RoleService{
     }
 
     @Override
-    public Role deleteById(UUID id) {return roles.remove(id);}
+    public Role getById(UUID id) {return roles.get(id);}
 
     @Override
     public Role getByName(String name) {
@@ -30,6 +34,9 @@ public class InMemoryRoleService implements RoleService{
                 .filter(role -> role.getName().equals(name))
                 .findFirst().orElse(null);
     }
+
+    @Override
+    public Role deleteById(UUID id) {return roles.remove(id);}
 
     @Override
     public Set<Role> getRolesFromNames(String[] rolesNames) {

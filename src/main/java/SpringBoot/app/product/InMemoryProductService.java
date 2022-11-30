@@ -45,7 +45,6 @@ public class InMemoryProductService implements ProductService {
 
     }
 
-
     public Set<ProductDto> getManufactureProductsByName(String name) {
         return products.values()
                 .stream()

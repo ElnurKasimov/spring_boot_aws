@@ -57,7 +57,10 @@ public class UserController {
     }
 
     @GetMapping("/add")
-    public String getAddUser() {return "/user/add";
+    public ModelAndView getAddProduct() {
+        ModelAndView result = new ModelAndView("user/add");
+        result.addObject("roles", roleService.listAll());
+        return  result;
     }
     @PostMapping("/add")
     public String postAddUser(
@@ -70,7 +73,7 @@ public class UserController {
 
         UserDto userDto = new UserDto(lastName, firstName, email, roleService.getRolesFromNames(roles));
         userService.save(userDto);
-        return "redirect:/manufacture/all";
+        return "redirect:/user/all";
     }
 
     @GetMapping("/error")
