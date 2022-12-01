@@ -13,22 +13,12 @@
              <label for="firstName">First Name:</label>
              <input type="text" id="firstName" name="firstName"><br>
              <label for="email">E-mail:</label>
-             <input type="text" id="email" name="email"><br>
-
-
-             <input type="checkbox" id="user" name="roles[]" value="user">
-             <label for="user">User </label>
-             <br>
-
-
-             <input type="checkbox" id="admin" name="roles[]" value="admin">
-             <label for="admin">Admin </label>
-             <br>
-
-             <input type="checkbox" id="boss" name="roles[]" value="boss">
-             <label for="boss">Boss </label>
-             <br>
-
+             <input type="email" id="email" name="email"><br>
+            <p>Select roles of the user:</p>
+             <th:block th:each="role : ${roles}">
+                 <input type="checkbox" name="rolesNames" th:value="${role.name}"/>
+                 <label th:text="${role.name}"></label><br>
+             </th:block><br>
              <button type="submit">Add</button>
          </form>
      </body>

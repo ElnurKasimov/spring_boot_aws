@@ -59,7 +59,7 @@ public class UserController {
     @GetMapping("/add")
     public ModelAndView getAddProduct() {
         ModelAndView result = new ModelAndView("user/add");
-        //result.addObject("roles", roleService.listAll());
+        result.addObject("roles", roleService.listAll());
         return  result;
     }
     @PostMapping("/add")
@@ -67,9 +67,9 @@ public class UserController {
             @RequestParam(name = "lastName") String lastName,
             @RequestParam(name = "firstName") String firstName,
             @RequestParam(name = "email") String email,
-            @RequestParam(value = "roles[]") String[] roles )  {
+            @RequestParam(value = "rolesNames") String[] rolesNames )  {
 
-        UserDto userDto = new UserDto(lastName, firstName, email, roleService.getRolesFromNames(roles));
+        UserDto userDto = new UserDto(lastName, firstName, email, roleService.getRolesFromNames(rolesNames));
         userService.save(userDto);
         return "redirect:/user/all";
     }
