@@ -1,5 +1,6 @@
 package SpringBoot.app.product;
 
+import SpringBoot.app.product.dto.ProductConverter;
 import SpringBoot.app.product.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Primary
 @RequiredArgsConstructor
@@ -16,7 +18,10 @@ public class DbProductService implements ProductService{
 
     @Override
     public Set<ProductDto> listAll() {
-        return null;
+        return repository.findAll()
+                .stream()
+                .map(ProductConverter::from)
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -31,7 +36,7 @@ public class DbProductService implements ProductService{
 
     @Override
     public Product save(ProductDto productDto) {
-        return null;
+        return repository.save(ProductConverter.to(productDto));
     }
 
     @Override

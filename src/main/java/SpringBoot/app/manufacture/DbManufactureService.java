@@ -1,5 +1,6 @@
 package SpringBoot.app.manufacture;
 
+import SpringBoot.app.manufacture.dto.ManufactureConverter;
 import SpringBoot.app.manufacture.dto.ManufactureDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -7,16 +8,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Primary
 @Service
 @RequiredArgsConstructor
 public class DbManufactureService implements ManufactureService{
     private final ManufactureRepository repository;
-    
+
     @Override
     public Set<ManufactureDto> listAll() {
-        return null;
+        return repository.findAll()
+                .stream()
+                .map(ManufactureConverter::from)
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -31,7 +36,7 @@ public class DbManufactureService implements ManufactureService{
 
     @Override
     public Manufacture save(ManufactureDto manufactureDto) {
-        return null;
+        return repository.save(ManufactureConverter.to(manufactureDto));
     }
 
     @Override

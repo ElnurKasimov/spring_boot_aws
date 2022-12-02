@@ -3,8 +3,11 @@ package SpringBoot.app.product;
 import SpringBoot.app.manufacture.Manufacture;
 import lombok.AllArgsConstructor;
 
+import javax.persistence.*;
 import java.util.UUID;
 
+@Entity
+//@Table(name = "product")
 @AllArgsConstructor
 public class Product {
     private UUID id;
@@ -30,21 +33,28 @@ public class Product {
         this.manufacture = manufacture;
     }
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+
     public UUID getId() {
         return id;
     }
-
+    @Column (name = "name")
     public String getName() {
         return name;
     }
 
+    @Column(name = "price")
     public long getPrice() {
         return price;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manufacture_id")
     public Manufacture getManufacture() {
         return manufacture;
     }
+
 
     @Override
     public String toString() {

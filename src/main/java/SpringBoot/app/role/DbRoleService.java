@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Primary
 @RequiredArgsConstructor
@@ -15,12 +17,13 @@ public class DbRoleService implements RoleService{
 
     @Override
     public Set<Role> listAll() {
-        return null;
+
+        return new HashSet<>(repository.findAll());
     }
 
     @Override
     public Role save(Role role) {
-        return null;
+        return repository.save(role);
     }
 
     @Override

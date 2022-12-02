@@ -1,14 +1,15 @@
 package SpringBoot.app.role;
 
 import SpringBoot.app.product.dto.ProductConverter;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+
 @Service
 public class InMemoryRoleService implements RoleService{
     private Map<UUID, Role> roles = new HashMap<>();
-
 
     @Override
     public Set<Role> listAll() {

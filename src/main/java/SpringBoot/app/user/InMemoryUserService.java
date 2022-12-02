@@ -4,6 +4,7 @@ package SpringBoot.app.user;
 import SpringBoot.app.user.dto.UserConverter;
 import SpringBoot.app.user.dto.UserDto;
 import lombok.Getter;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
